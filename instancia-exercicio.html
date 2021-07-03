@@ -14,14 +14,16 @@
 
     <div id="app">
 
-        <div id="app1">
-            {{ferramenta}}
-        </div>
 
-        <div id="app2">
-            {{instrumento}}
-        </div>
 
+    </div>
+
+    <div id="app1">
+        {{ferramenta}}
+    </div>
+
+    <div id="app2">
+        {{instrumento}}
     </div>
 
     <script>
@@ -29,14 +31,24 @@
         // Faça o HTML abaixo funcionar com Vue
 
         const vm = new Vue({
-            el:"#app",
-            data:{
-                ferramenta:"Martelo",
+            el: "#app",
+            data: {
+                ferramenta: "Martelo",
                 instrumento: "faca"
             }
         })
-
-        
+        const vm2 = new Vue({
+            el: "#app1",
+            data: {
+                ferramenta: "Martelo",
+            }
+        })
+        const vm3 = new Vue({
+            el: "#app2",
+            data: {
+                instrumento: "colher"
+            }
+        })
     </script>
 
 </body>
