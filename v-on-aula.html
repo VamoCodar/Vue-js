@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <title>Vue JS</title>
+</head>
+
+<body>
+    <style>
+        .red{
+            color: red;
+        }
+    </style>
+
+
+    <div id="app">
+        <button v-on:click="contador = contador + 100/2 * 5">Clique me</button>
+        {{contador}}
+        <button @click="ativo = !ativo">Muda Ativo</button> <!-- como se fosse um toggle   -->
+        <p :class="ativo ? 'red' : '' "> esotu mudando</p>
+        
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                contador: 0,
+                ativo: true
+            },
+            methods: {
+                handleClick(event) {
+                    console.log(event);
+                }
+            }
+        })
+    </script>
+
+
+
+
+</body>
+
+</html>
