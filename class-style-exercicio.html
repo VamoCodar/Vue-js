@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>Vue JS</title>
+</head>
+
+<body>
+
+
+
+    <div id="app" class="m-5 ">
+
+        <button @click="colunaAtiva = !colunaAtiva">Trocar</button>
+
+        <ul @click="trocaCor" :class="{column:colunaAtiva}">
+            <li :style="{background:cor}">Sobre</li>
+            <li :style="{background:cor}">Produtos</li>
+            <li :style="{background:cor}">Serviços</li>
+            <li :style="{background:cor}">Contato</li>
+        </ul>
+
+    </div>
+
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                classe: "",
+                cor: "",
+                colunaAtiva: false,
+            },
+
+            methods: {
+                trocaCor() {
+                    return this.cor = `hsl(${Math.random() * 360}, 100%, 50%)`
+                }
+
+            },
+
+        })
+    </script>
+
+    <style>
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            font-family: monospace;
+            list-style: none;
+            padding: 0px;
+            margin: 0px;
+            pointer-events: pointer;
+            cursor: pointer;
+            user-select: none;
+
+        }
+
+        .column {
+            flex-direction: column;
+        }
+
+        li {
+            padding: 20px;
+            background: #84e;
+            color: white;
+            border-radius: 4px;
+            margin: 10px;
+            flex: 1;
+            text-align: center;
+            user-select: none;
+
+        }
+    </style>
+
+    <!-- Crie um botão que troque a orientação da lista, ou seja,
+        ao invés de 4 colunas, uma única coluna com 4 linhas.
+
+        O botão será responsável por trocar para lista e também
+        responsável por reverter esse processo.
+        Utilize adição/remoção de classes para atingir este efeito.
+
+        A classe column já está criada, basta utilizar ela.
+        -->
+
+
+
+    <!-- 
+        Crie um gerador de cores, toda vez que o usuário clicar
+        em cima da lista, os itens trocam de cor.
+        
+        Gerador de cor:
+        ;
+        -->
+
+</body>
+
+</html>

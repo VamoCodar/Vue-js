@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>Vue JS</title>
+</head>
+
+<body>
+
+
+
+    <div id="app" class="m-5 ">
+
+
+        <!-- two way  -->
+        <!-- do javascript pro dom e do dom pro js -->
+        <input v-model="nome" type="text" />
+        <p> {{nome}} </p>
+
+        <textarea name="a" id="" cols="10" rows="2" v-model="mensagem">
+
+        </textarea>
+
+        <p> {{mensagem}} </p>
+
+        <!-- one way  -->
+        <!-- só vem do js pro dom / de cima pra baixo -->
+        <input type="text " :value="texto" />
+        <p> {{texto}} </p>
+
+        <input type="checkbox" v-model="checkbox">
+        <p>{{checkbox}}</p>
+
+        <hr>
+
+        <div>
+
+            <input type="radio" name="cor" v-model="cor" value="azul">
+            <label for="cor"> Azul</label>
+
+            <input type="radio" name="cor" v-model="cor" value="Vermelho">
+            <label for="cor"> Vermelho</label>
+
+            <input type="radio" name="cor" v-model="cor" value="Verde">
+            <label for="cor"> Verde</label>
+
+            <p> {{cor}}</p>
+
+        </div>
+        <hr>
+        <select v-model="fruta">
+            <!-- deixar disabled value="" no primeiro pra n dar bug -->
+            <option disabled value="">Selecione uma fruta</option>
+            <option value="banana">Banana</option>
+            <option value="morango">Morango</option>
+            <option value="uva">Uva</option>
+
+        </select>
+        <p>{{fruta}}</p>
+
+
+
+    </div>
+
+
+
+    <script>
+        const vm = new Vue({
+
+            el: "#app",
+            data: {
+                nome: "",
+                mensagem: "",
+                texto: "oi",
+                checkbox: true,
+                cor: "",
+                fruta: ""
+            },
+
+            methods: {
+
+            },
+
+        })
+    </script>
+
+
+
+
+</body>
+
+</html>
