@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>Vue JS</title>
+</head>
+
+<body>
+
+
+
+    <div id="app" class="m-5 ">
+        <h2>Criador de botoes</h2>
+        <div>
+            <label for="width">Width</label>
+            <input name="width" type="text" v-model="botao.width">
+        </div>
+        <div>
+            <label for="height">Height</label>
+            <input name="height" type="text" v-model="botao.height">
+        </div>
+        <div>
+            <label for="fontSize">fontSize</label>
+            <input name="fontSize" type="text" v-model="botao.fontSize">
+        </div>
+        <div>
+            <label for="fontFamily">fontFamily</label>
+            <input name="fontFamily" type="text" v-model="botao.fontFamily">
+        </div>
+
+        <div>
+            <label for="textAlign">textAlign</label>
+            <input name="textAlign" type="text" v-model="botao.textAlign">
+        </div>
+
+
+        <div>
+            <label for="background">background</label>
+            <input name="background" type="text" v-model="botao.background">
+        </div>
+        <div>
+            <label for="color">color</label>
+            <input name="color" type="text" v-model="botao.color">
+        </div>
+
+        <div>
+            <label for="borderRadius">borderRadius</label>
+            <input name="borderRadius" type="text" v-model="botao.borderRadius">
+        </div>
+
+
+        <button :style=botao>Botao Criado</button>
+
+        <!--   com, nome, email, telefone e mensagem. -->
+        <hr class="mt-5">
+        <h2>Dados</h2>
+        <p>nome</p>
+        <input type="text" v-model="dados.nome">
+        <br>
+        <p>email</p>
+        <input type="text" v-model="dados.email">
+
+        <p>telefone</p>
+        <input type="text" v-model="dados.telefone">
+        <br>
+        <textarea name="" id="" cols="30" rows="4" v-model="dados.mensagem"></textarea>
+
+        <hr>
+
+        <button @click.prevent="enviado = true">Enviar</button>
+
+        <div v-if="enviado">
+
+            <ul>
+                <li v-for="(dado, key) in dados"> {{key}}: {{dado}}</li>
+            </ul>
+        </div>
+
+
+    </div>
+
+    <script>
+        const vm = new Vue({
+
+            el: "#app",
+            data: {
+                dados: {
+                    nome: "",
+                    email: "",
+                    telefone: "",
+                    mensagem: ""
+                },
+
+                botao: {
+                    width: "",
+                    height: "",
+                    fontSize: "",
+                    fontFamily: "",
+                    textAlign: "",
+                    background: "",
+                    color: "",
+                    borderRadius: "",
+
+                },
+                ativo: false,
+                enviado: false,
+            },
+
+            methods: {
+
+
+            },
+
+        })
+    </script>
+
+    <!-- 
+            1 - Crie um criador de botões.
+
+            O usuário poderá definir:
+            width,
+            height,
+            font-size,
+            font-family,
+            text-align,
+            background,
+            color,
+            border-radius,
+
+            As escolhas serão feitas em campos de
+            formulário. Cada escolha deverá ser 
+            refletida em um elemento (o botão).
+
+
+            2 - Crie um formulário com, nome, email, telefone e mensagem.
+            Ao clicar em enviar, as informações preenchidas no formulário
+            devem aparecer abaixo do mesmo. (previna o comportamento padrão do botão enviar)
+
+            -->
+
+
+
+</body>
+
+</html>

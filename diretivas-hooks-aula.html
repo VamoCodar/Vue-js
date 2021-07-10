@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <title>Vue JS</title>
+</head>
+
+<body>
+
+
+    <div id="app">
+        {{mensagem}}
+        <br>
+        <div v-for="(dado, key) in github">
+
+            <strong> {{key}}</strong> :{{dado}}
+        </div>
+        <button @click="contador++">CliCk</button>
+        {{contador}}
+        <button @click="destruir">Destruir</button>
+        <button @click="montar">Montar</button>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                mensagem: "essa é a mensagem",
+                github: {},
+                contador: 0
+            },
+
+            methods: {
+                puxarGithub() {
+                    fetch("https://api.github.com/users/vamocodar")
+                        .then(r => r.json())
+                        .then(r => this.github = r)
+                },
+                destruir() {
+                    this.$destroy()
+                },
+                montar() {
+                    this.$mount()
+                },
+
+            },
+
+            //1
+            beforeCreate() {
+                console.log(this.mensagem); //nao tem a mensagem ainda
+            },
+
+            //2
+            created() {
+                console.log(this.mensagem); //ja tem a mensagem
+                this.puxarGithub()
+                console.log(this.$el) //nao tem o dom ainda
+
+            },
+
+            //3
+            beforeMount() {
+                console.log(this.$el) //ja mountou o dom mas n tem a reatividade
+                console.log("beforeMount", this.mensagem);
+            },
+
+            //4
+            mounted() {
+                console.log(this.$el) //ja mountou o dom e tem a reatividade
+                console.log(this.mensagem);
+            },
+
+            //5 parecido com o whatch, mas fica de olho em qualquer coisa que mudar
+            //ocore antes do dom autalizar
+            beforeUpdate() {
+                console.log("BeforeUpdate");
+            },
+
+            //6  parecido com o whatch, mas fica de olho em qualquer coisa que mudar
+            //ocorre depois do dom atualizar
+            updated() {
+                console.log("Update");
+
+            },
+
+            //7
+            beforeDestroy() {
+                console.log("vai destruir");
+            },
+
+            //8
+
+            //7
+            destroyed() {
+                console.log("destruiu");
+            }
+
+
+        })
+    </script>
+
+
+
+
+</body>
+
+</html>

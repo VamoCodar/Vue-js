@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <title>Vue.js</title>
+</head>
+
+<body>
+  <style>
+    ul {
+      margin-top: 20px;
+    }
+
+    ul li {
+      display: flex;
+    }
+
+    ul li p {
+      margin-left: 20px;
+    }
+  </style>
+
+
+  <div id="app">
+
+    <tempo-dia></tempo-dia>
+
+    <hr>
+
+
+    <market-cap></market-cap>
+
+  </div>
+
+
+  <script type="module">
+    import TempoDia from "./components/TempoDia.js"
+    import MarketCap from "./components/MarketCap.js"
+
+    Vue.component("TempoDia", TempoDia)
+
+    const vm = new Vue({
+      el: "#app",
+      components:{
+        MarketCap,
+      },
+     
+    })
+
+    
+  </script>
+
+  <!-- 
+        Crie uma tela com 3 diferentes Componentes.
+
+        1 - Mostre o tempo do dia usando a API:
+        https://www.metaweather.com/api/location/455825/ (Código do Rio de Janeiro)
+        
+
+        2 - Mostre a relação dolar/real
+        https://api.exchangeratesapi.io/latest?base=USD
+
+        3 - Mostre o valor de mercado da Apple (marketCap)
+        https://api.origamid.dev/stock/aapl/quote
+
+        Crie os componentes em arquivos separados e utilize import/export
+        O componente 1 deve ser registrado globalmente
+        O componente 2 deve ser registrado localmente dentro do componente 3.
+        O componente 3 deve ser registrado localmente da instância Vue.js
+      -->
+
+
+</body>
+
+</html>

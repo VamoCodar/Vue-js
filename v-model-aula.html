@@ -63,8 +63,18 @@
 
         </select>
         <p>{{fruta}}</p>
+        <hr>
 
-
+        <!-- MODIFIers -->
+        <!-- Com o .lazy, a reatividade só acontecendo ao change (quando o usuário muda de campo). O .number irá automaticamente transformar o input em número e não string. O .trim automaticamente elimina espaços em branco. -->
+        <textarea v-model.number="mensagem"></textarea>
+        {{mensagem}}
+        <br>
+        <input type="text" v-model.number="ano">
+        {{ano}}
+        <br>
+        <input type="text" v-model.trim="trim">
+        {{trim}}
 
     </div>
 
@@ -80,7 +90,9 @@
                 texto: "oi",
                 checkbox: true,
                 cor: "",
-                fruta: ""
+                fruta: "",
+                ano: 0,
+                trim: "",
             },
 
             methods: {
