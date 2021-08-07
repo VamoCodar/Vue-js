@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>Vue JS</title>
+</head>
+
+<body>
+
+
+    <div id="app" class="m-5 ">
+        <p>Preço {{preco}}</p>
+        {{total}}
+
+
+
+        <hr>
+        <!-- pode usar um computed para filtrar arrays -->
+        <!-- computed ela é reativa -->
+        <ul>
+            <li v-for="carro in carrosAzuis">
+                <p>{{carro.marca}}</p>
+                <p>{{carro.cor}}</p>
+                {{carro}}
+            </li>
+        </ul>
+        <button @click="removerCarro">Remover</button>
+        <hr>
+
+
+        <!-- watch -->
+        <!-- Fica de olho na propriedade, tem que ter o mesmo nome da propr -->
+        <p>{{contador}}</p>
+        <button @click="contador++">Contador</button>
+
+
+
+    </div>
+
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                preco: 59,
+                desconto: 10,
+                contador: 0,
+                carros: [{
+                        marca: "VW",
+                        cor: "Azul"
+                    },
+                    {
+                        marca: "Ford",
+                        cor: "Preto"
+                    },
+                    {
+                        marca: "Tesla",
+                        cor: "Azul"
+                    }
+                ],
+            },
+
+            methods: {
+                removerCarro() {
+                    this.carros.pop()
+                }
+            },
+            computed: {
+
+                total() {
+                    return "R$" + (this.preco - this.desconto)
+                },
+                
+                carrosAzuis() {
+                    return this.carros.filter(({
+                        cor
+                    }) => cor === "Azul")
+
+                },
+
+
+
+            },
+            watch: {
+                contador(valorNovo, valorAntigo) {
+                    console.log("novo", valorNovo, "antigo", valorAntigo)
+                },
+                carros (valorNovo, valorAntigo) {
+                    console.log("novo", valorNovo, "antigo", valorAntigo)
+
+                }
+            }
+        })
+    </script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <title>Vue JS</title>
+</head>
+
+<body>
+
+    <div id="app">
+        {{total}}
+        <button @click="incrementar">Incrementar </button>
+        <p>{{instrumento}}</p>
+        <button @click="mudarNome('guitarra')">Mudar nome</button>
+        <button @click="mudarNome('violao')">Mudar nome</button>
+        <button @click="verEvento">Ver Evento</button>
+    </div>
+
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                total: 0,
+                instrumento: ""
+            },
+            methods: {
+                incrementar() {
+                    this.total++
+                    this.teste()
+                },
+                diminuir() {
+                    this.total--
+                },
+                mudarNome(instrumento) {
+                    this.instrumento = instrumento
+                },
+                verEvento(evt) {
+                    console.log(evt);
+
+                    //podemos acessar os metodos dentro do metodo com this
+                    this.mudarNome("rebeca")
+                },
+                teste() {
+                    console.log("Metodo Ativado");
+                }
+            }
+
+
+        })
+    </script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <title>Vue JS</title>
+</head>
+
+<body>
+    <style>
+        .verde {
+            color: green;
+        }
+
+        .vermelho {
+            color: red;
+        }
+    </style>
+
+
+    <div id="app">
+        <button @click="fazerfetch">Fazer fetch</button>
+      
+
+        <p :class="dadosApple.marketCap > dadosGoogle.marketCap   ? 'verde' : 'vermelho' ">{{dadosApple.companyName}} {{dadosApple.marketCap}}</p>
+        <p :class="dadosApple.marketCap < dadosGoogle.marketCap ? 'verde' : 'vermelho' ">{{dadosGoogle.companyName}} {{dadosGoogle.marketCap}}</p>
+        <p>{{comparador}}</p>
+
+    </div>
+    <!--
+  Utilizando as API's
+  https://api.origamid.dev/stock/aapl/quote
+  https://api.origamid.dev/stock/googl/quote
+
+  - Compare o marketCap (valor de
+  mercado) entre ambas.
+
+  - Mostre o nome das empresas e o valor
+  na interace (companyName e marketCap).
+
+  - Mude a cor para verde o nome da empresa com
+  maior marketCap e vermelho a com menor.
+-->
+
+    <script>
+        const vm = new Vue({
+            el: "#app",
+            data: {
+                dadosApple: {},
+                dadosGoogle: {},
+                comparador: "",
+                cor: ""
+
+
+
+            },
+            methods: {
+                fazerfetch() {
+                    fetch('https://api.origamid.dev/stock/aapl/quote')
+                        .then(response => response.json())
+                        .then(json => this.dadosApple = json)
+                    fetch('https://api.origamid.dev/stock/googl/quote')
+                        .then(response => response.json())
+                        .then(json => this.dadosGoogle = json)
+
+                },
+
+
+            }
+        })
+    </script>
+
+
+
+
+</body>
+
+</html>

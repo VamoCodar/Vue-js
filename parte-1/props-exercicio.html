@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Vue.js</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <pega-valor>
+
+        </pega-valor>
+    </div>
+
+
+
+    <script type="module">
+        const MostraValor = {
+            name: "MostraValor",
+            props: ["dadoMostrado"],
+            /* html */
+            template: `
+
+           <ul>
+            <li  
+            v-show="dadoMostrado !== null" 
+            v-for="(item,chave) in dadoMostrado" 
+            :key="item + chave"> 
+             <strong class="m-1">{{chave}}</strong> : {{item}}
+            </li> 
+            </ul>   
+            `,
+        }
+
+        const PegaValor = {
+            name: "PegaValor",
+            /* html */
+            template: `
+           <div>
+                <input type="text" v-model.lazy="valor"> <button @click="fazerFetch">Puxar</button>
+           
+                <mostra-valor            
+                :dadoMostrado="dados" > 
+                </mostra-valor>
+               
+            </div>
+            `,
+
+            data() {
+                return {
+                    valor: "",
+                    dados: {}
+                }
+            },
+            components: {
+                MostraValor,
+            },
+            methods: {
+                fazerFetch() {
+                    fetch(`https://api.origamid.dev/stock/${this.valor}/quote`)
+                        .then(r => r.json())
+                        .then(r => {
+                            this.dados = r
+                        })
+                }
+            }
+        }
+
+
+        const vm = new Vue({
+            el: "#app",
+
+            data: {
+            },
+
+            components: {
+                PegaValor
+            },
+
+        })
+
+    </script>
+    <!-- 
+        Crie um componente com um campo de input e um botão para enviar o valor.
+        Nesse campo de input será possível escrever o simbolo de empresas americanas
+
+        simbolos ex:
+        aapl -> Apple
+        goog -> Google
+        msft -> Microsoft
+        amzn -> Amazon
+        fb -> Facebook
+
+        Ao clicar no botão, faça um fetch com a API:
+        https://api.origamid.dev/stock/${SIMBOLO}/quote
+
+        O resultado do fetch deverá ser mostrado em um componente filho do formulário.
+        Envia as informações utilizando prop
+        
+        Mostre todas as informações do fetch utilizando um loop.
+        -->
+
+</body>
+
+</html>

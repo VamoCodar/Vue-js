@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Vue.js</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <meu-component :vemdopai="lista"></meu-component>
+    </div>
+
+
+    <script type="module">
+
+        const ItemProduto = {
+            name: "ItemProduto",
+            props:["nomequevaireceber"],
+            /* html */
+            template: ` <li>esse é o nome {{nomequevaireceber}}</li>`,
+        }
+
+        const MeuComponent = {
+            name: "MeuComponent",
+            props: ["vemdopai"],
+            components:{
+                ItemProduto,
+            },
+            /* html */
+            template: `
+                <ul>
+                    <li 
+                        v-for="item,index in vemdopai" 
+                        :key="index"> {{index}} {{item}}
+                    </li>
+
+                    <item-produto
+                        v-for="item,index in vemdopai" 
+                        :nomequevaireceber="item" 
+                        :key="item + index">
+                    </item-produto>
+
+                </ul>
+            `,
+        }
+
+        const vm = new Vue({
+            el: "#app",
+            
+            data: {
+                lista: ["Banana", "Laranja", "Uva", "Perâ"]
+            },
+
+            components: {
+                MeuComponent,
+            },
+
+        })
+
+    </script>
+
+</body>
+
+</html>
